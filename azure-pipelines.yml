@@ -11,7 +11,7 @@ pool:
 
 steps:
 - script: |
-    npm i --global lerna
+    sudo npm i --global lerna
     npm i
     lerna bootstrap
     lerna run test
