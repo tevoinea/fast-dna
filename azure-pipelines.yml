@@ -10,8 +10,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: npm i --global lerna; npm i; lerna bootstrap; lerna run test
-  displayName: 'Run a one-line script'
+- script: |
+    npm i --global lerna
+    npm i
+    lerna bootstrap
+    lerna run test
+  displayName: 'Install'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
