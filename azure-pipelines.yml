@@ -10,12 +10,26 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: |
-    sudo npm i --global lerna
-    npm i
-    lerna bootstrap
-    lerna run test
-  displayName: 'Install'
+- task: NodeTool@0
+  displayName: 'Use Node 10.14.x'
+  inputs:
+    versionSpec: 10.14.x
+
+- task: Npm@1
+  displayName: 'Install Lerna'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'i lerna -g'
+
+- task: Npm@1
+  displayName: 'Install Package Dependencies'
+  inputs:
+    command: 'install'
+    verbose: false
+
+- script: 'lerna bootstrap'
+  displayName: 'Lerna Bootstrap'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
